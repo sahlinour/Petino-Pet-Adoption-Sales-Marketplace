@@ -37,11 +37,12 @@ class PetController extends Controller
         }
     
         // Récupérer les animaux filtrés
-        $pets = $query->get();
+       $pets = $query->paginate(6)->withQueryString();
+
     
         $categories = Category::all();
     
-        return view('dashboard.pets', compact('pets', 'categories'));
+        return view('pages.petsList', compact('pets', 'categories'));
     }
     
 
@@ -72,7 +73,7 @@ class PetController extends Controller
         // Vérifier si l'animal est déjà vendu
         $isSold = $pet->status === 'sold';
 
-        return view('dashboard.showPets', compact('pet', 'isSold'));
+        return view('pages.petsShow', compact('pet', 'isSold'));
     }
 
     // Méthode pour acheter un animal

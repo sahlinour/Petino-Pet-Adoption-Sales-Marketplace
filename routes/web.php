@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 // Dashboard (accessible uniquement après connexion)
 Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware('auth')
+
     ->name('dashboard');
 
 // Redirection après connexion
@@ -38,6 +38,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/pets', [PetController::class, 'index'])->name('pets');
-Route::get('/pets/{id}', [PetController::class, 'show'])->name('pets.showPets');
+Route::get('/pets/{id}', [PetController::class, 'show'])->name('pets.petsShow');
 
+Route::get('/petsList', [PetController::class, 'index'])->name('petsList');
 

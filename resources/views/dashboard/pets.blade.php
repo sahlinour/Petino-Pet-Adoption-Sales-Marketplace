@@ -9,7 +9,7 @@
                 <form method="GET" action="{{ route('pets') }}" class="d-flex flex-wrap gap-2 justify-content-between align-items-center">
                     <!-- Filters -->
                     <div class="filter-item">
-                        <select name="category" id="category" class="form-control">
+                       <select name="category" id="category" class="form-control">
                             <option value="">All Categories</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
