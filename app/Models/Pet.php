@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Order;
+use App\Models\Listing;
 
 class Pet extends Model
 {
@@ -47,4 +49,9 @@ class Pet extends Model
     {
         return $this->hasMany(Review::class);
     }
+    public function listings()
+    {
+        return $this->hasMany(Listing::class);
+    }
 }
+

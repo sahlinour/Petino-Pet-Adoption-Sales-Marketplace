@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="{{ asset('css/styleAuth.css') }}">
 </head>
 <body>
-    <div class="register-container">
-        <h2 class="text-center mb-4">Sign In</h2>
+    <div class="login-container">
+        <h2>Sign In</h2>
     <form action="{{ route('login') }}" method="POST">
         @csrf
         <div class="mb-3">
@@ -25,17 +25,7 @@
     </div>
     
 <style>
-    body {
-        background-image: linear-gradient(90deg,#7dafbd,#2791b4,#094e63);
-       /*  background: url('{{ asset('images/bones.png') }}') no-repeat;*/
-        background-color: #9BC1D6;
-        background-size: cover;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
+   
   
 </style>
 
