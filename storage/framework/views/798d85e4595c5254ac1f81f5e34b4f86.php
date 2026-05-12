@@ -1,8 +1,8 @@
-@extends('layouts.layoutPets')
 
-@section('title', $pet->name)
 
-@section('content')
+<?php $__env->startSection('title', $pet->name); ?>
+
+<?php $__env->startSection('content'); ?>
 
 <style>
 /* ═══════════════════════════════════════════
@@ -903,11 +903,12 @@
 
   <!-- Left: Image -->
   <div class="editorial-hero__img">
-    <img src="{{ asset('storage/' . $pet->image) }}" alt="{{ $pet->name }}">
+    <img src="<?php echo e(asset('storage/' . $pet->image)); ?>" alt="<?php echo e($pet->name); ?>">
 
     <div class="editorial-hero__label">
-      <span class="dot {{ $isSold ? 'sold' : (strtolower($pet->status) === 'pending' ? 'pending' : '') }}"></span>
-      {{ $isSold ? 'Sold' : ucfirst($pet->status) }}
+      <span class="dot <?php echo e($isSold ? 'sold' : (strtolower($pet->status) === 'pending' ? 'pending' : '')); ?>"></span>
+      <?php echo e($isSold ? 'Sold' : ucfirst($pet->status)); ?>
+
     </div>
 
     <div class="editorial-hero__scroll">
@@ -920,42 +921,43 @@
   <div class="editorial-hero__info">
 
     <div class="editorial-hero__crumb">
-      <a href="{{ route('home') }}"><i class="fas fa-home"></i></a>
+      <a href="<?php echo e(route('home')); ?>"><i class="fas fa-home"></i></a>
       <i class="fas fa-chevron-right"></i>
-      <a href="{{ route('pets') }}">Pets</a>
+      <a href="<?php echo e(route('pets')); ?>">Pets</a>
       <i class="fas fa-chevron-right"></i>
-      <span style="color:rgba(255,255,255,.65);">{{ $pet->name }}</span>
+      <span style="color:rgba(255,255,255,.65);"><?php echo e($pet->name); ?></span>
     </div>
 
     <div class="editorial-tag">🐶 Pet for Sale</div>
 
     <h1 class="editorial-hero__name reveal">
       <em>meet</em>
-      {{ $pet->name }}
+      <?php echo e($pet->name); ?>
+
     </h1>
 
-    <p class="editorial-hero__breed">{{ $pet->breed ?? 'Lovely Pet' }} &nbsp;·&nbsp; {{ ucfirst($pet->gender ?? '') }} &nbsp;·&nbsp; {{ $pet->age ? $pet->age . ' yrs' : '' }}</p>
+    <p class="editorial-hero__breed"><?php echo e($pet->breed ?? 'Lovely Pet'); ?> &nbsp;·&nbsp; <?php echo e(ucfirst($pet->gender ?? '')); ?> &nbsp;·&nbsp; <?php echo e($pet->age ? $pet->age . ' yrs' : ''); ?></p>
 
     <div class="editorial-rule"></div>
 
-    <p class="editorial-hero__desc reveal reveal-delay-1">{{ $pet->description }}</p>
+    <p class="editorial-hero__desc reveal reveal-delay-1"><?php echo e($pet->description); ?></p>
 
     <!-- Specs -->
     <div class="editorial-specs reveal reveal-delay-2">
       <div class="spec-item">
         <div class="spec-item__icon">🐾</div>
         <div class="spec-item__label">Breed</div>
-        <div class="spec-item__val">{{ $pet->breed ?? '—' }}</div>
+        <div class="spec-item__val"><?php echo e($pet->breed ?? '—'); ?></div>
       </div>
       <div class="spec-item">
         <div class="spec-item__icon">📅</div>
         <div class="spec-item__label">Age</div>
-        <div class="spec-item__val">{{ $pet->age ? $pet->age . ' yrs' : '—' }}</div>
+        <div class="spec-item__val"><?php echo e($pet->age ? $pet->age . ' yrs' : '—'); ?></div>
       </div>
       <div class="spec-item">
         <div class="spec-item__icon">⚧</div>
         <div class="spec-item__label">Gender</div>
-        <div class="spec-item__val">{{ ucfirst($pet->gender ?? '—') }}</div>
+        <div class="spec-item__val"><?php echo e(ucfirst($pet->gender ?? '—')); ?></div>
       </div>
       <div class="spec-item">
         <div class="spec-item__icon">📍</div>
@@ -967,31 +969,31 @@
     <!-- Price -->
     <div class="editorial-price reveal reveal-delay-3">
       <span class="editorial-price__cur">MAD</span>
-      <span class="editorial-price__val">{{ number_format($pet->price, 0) }}</span>
+      <span class="editorial-price__val"><?php echo e(number_format($pet->price, 0)); ?></span>
       <span class="editorial-price__tag">Fixed<br>price</span>
     </div>
 
     <!-- Buttons -->
     <div class="editorial-btns reveal reveal-delay-4">
-      @if($isSold)
+      <?php if($isSold): ?>
         <button class="btn-editorial-primary" disabled>
           <i class="fas fa-times-circle"></i> This pet is sold
         </button>
-      @else
-        @auth
-          <form action="{{ route('buyer.buy', $pet->id) }}" method="POST" style="display:contents;">
-            @csrf
+      <?php else: ?>
+        <?php if(auth()->guard()->check()): ?>
+          <form action="<?php echo e(route('buyer.buy', $pet->id)); ?>" method="POST" style="display:contents;">
+            <?php echo csrf_field(); ?>
             <button type="submit" class="btn-editorial-primary">
-              <i class="fas fa-shopping-bag"></i> Buy {{ $pet->name }} Now
+              <i class="fas fa-shopping-bag"></i> Buy <?php echo e($pet->name); ?> Now
             </button>
           </form>
-        @else
-          <a href="{{ route('login') }}" class="btn-editorial-primary">
+        <?php else: ?>
+          <a href="<?php echo e(route('login')); ?>" class="btn-editorial-primary">
             <i class="fas fa-lock"></i> Login to Buy
           </a>
-        @endauth
-      @endif
-      <a href="{{ route('pets') }}" class="btn-editorial-secondary">
+        <?php endif; ?>
+      <?php endif; ?>
+      <a href="<?php echo e(route('pets')); ?>" class="btn-editorial-secondary">
         <i class="fas fa-arrow-left"></i> Back to all listings
       </a>
     </div>
@@ -1006,28 +1008,28 @@
   <div class="stats-bar__item">
     <span class="stats-bar__icon">🐾</span>
     <div>
-      <span class="stats-bar__val">{{ $pet->breed ?? 'Mixed' }}</span>
+      <span class="stats-bar__val"><?php echo e($pet->breed ?? 'Mixed'); ?></span>
       <span class="stats-bar__lbl">Breed</span>
     </div>
   </div>
   <div class="stats-bar__item">
     <span class="stats-bar__icon">📅</span>
     <div>
-      <span class="stats-bar__val">{{ $pet->age ?? '?' }} years</span>
+      <span class="stats-bar__val"><?php echo e($pet->age ?? '?'); ?> years</span>
       <span class="stats-bar__lbl">Age</span>
     </div>
   </div>
   <div class="stats-bar__item">
     <span class="stats-bar__icon">⚧</span>
     <div>
-      <span class="stats-bar__val">{{ ucfirst($pet->gender ?? 'Unknown') }}</span>
+      <span class="stats-bar__val"><?php echo e(ucfirst($pet->gender ?? 'Unknown')); ?></span>
       <span class="stats-bar__lbl">Gender</span>
     </div>
   </div>
   <div class="stats-bar__item">
     <span class="stats-bar__icon">💰</span>
     <div>
-      <span class="stats-bar__val">{{ number_format($pet->price, 0) }} MAD</span>
+      <span class="stats-bar__val"><?php echo e(number_format($pet->price, 0)); ?> MAD</span>
       <span class="stats-bar__lbl">Price</span>
     </div>
   </div>
@@ -1041,10 +1043,10 @@
 
     <!-- Sticky left text -->
     <div class="about-section__sticky reveal">
-      <div class="about-section__eyebrow">✦ About {{ $pet->name }}</div>
+      <div class="about-section__eyebrow">✦ About <?php echo e($pet->name); ?></div>
       <h2 class="about-section__heading">A companion<br>worth knowing</h2>
-      <p class="about-section__body">{{ $pet->description }}</p>
-      <a href="{{ route('pets') }}" style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--blue);text-decoration:none;transition:var(--ease);" onmouseover="this.style.color='var(--dark)'" onmouseout="this.style.color='var(--blue)'">
+      <p class="about-section__body"><?php echo e($pet->description); ?></p>
+      <a href="<?php echo e(route('pets')); ?>" style="display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--blue);text-decoration:none;transition:var(--ease);" onmouseover="this.style.color='var(--dark)'" onmouseout="this.style.color='var(--blue)'">
         <i class="fas fa-th-large"></i> Browse all pets
       </a>
     </div>
@@ -1055,7 +1057,7 @@
         <div class="feature-card__icon-wrap">🏥</div>
         <div>
           <div class="feature-card__title">Health Verified</div>
-          <div class="feature-card__text">{{ $pet->name }} has been health-checked and vaccinated. All medical records are available upon request before purchase.</div>
+          <div class="feature-card__text"><?php echo e($pet->name); ?> has been health-checked and vaccinated. All medical records are available upon request before purchase.</div>
         </div>
       </div>
       <div class="feature-card reveal reveal-delay-2">
@@ -1088,7 +1090,7 @@
      ④ MOOD PHOTO
 ═══════════════════════ -->
 <div class="mood-section">
-  <img class="mood-section__img" src="{{ asset('storage/' . $pet->image) }}" alt="{{ $pet->name }}">
+  <img class="mood-section__img" src="<?php echo e(asset('storage/' . $pet->image)); ?>" alt="<?php echo e($pet->name); ?>">
   <div class="mood-section__overlay">
     <div class="mood-section__quote reveal">
       <blockquote>
@@ -1135,41 +1137,41 @@
   <div class="final-cta__inner reveal">
     <span class="final-cta__paw">🐾</span>
     <h2 class="final-cta__heading">
-      Give <em>{{ $pet->name }}</em><br>a Forever Home
+      Give <em><?php echo e($pet->name); ?></em><br>a Forever Home
     </h2>
     <p class="final-cta__sub">
-      Great pets don't stay available for long. Make your move today and give {{ $pet->name }} the loving home they deserve.
+      Great pets don't stay available for long. Make your move today and give <?php echo e($pet->name); ?> the loving home they deserve.
     </p>
 
     <div class="final-cta__price-preview">
       <span>Price</span>
-      <strong>{{ number_format($pet->price, 0) }} MAD</strong>
+      <strong><?php echo e(number_format($pet->price, 0)); ?> MAD</strong>
       <span>·</span>
-      <span>{{ $pet->breed ?? 'Pet' }}</span>
+      <span><?php echo e($pet->breed ?? 'Pet'); ?></span>
       <span>·</span>
-      <span>{{ ucfirst($pet->gender ?? '') }}</span>
+      <span><?php echo e(ucfirst($pet->gender ?? '')); ?></span>
     </div>
 
     <div class="final-cta__btns">
-      @if($isSold)
+      <?php if($isSold): ?>
         <button class="btn-cta-pink" disabled>
           <i class="fas fa-times-circle"></i> Already Sold
         </button>
-      @else
-        @auth
-          <form action="{{ route('buyer.buy', $pet->id) }}" method="POST" style="display:contents;">
-            @csrf
+      <?php else: ?>
+        <?php if(auth()->guard()->check()): ?>
+          <form action="<?php echo e(route('buyer.buy', $pet->id)); ?>" method="POST" style="display:contents;">
+            <?php echo csrf_field(); ?>
             <button type="submit" class="btn-cta-pink">
-              <i class="fas fa-shopping-bag"></i> Buy {{ $pet->name }} Now
+              <i class="fas fa-shopping-bag"></i> Buy <?php echo e($pet->name); ?> Now
             </button>
           </form>
-        @else
-          <a href="{{ route('login') }}" class="btn-cta-pink">
+        <?php else: ?>
+          <a href="<?php echo e(route('login')); ?>" class="btn-cta-pink">
             <i class="fas fa-lock"></i> Login to Buy
           </a>
-        @endauth
-      @endif
-      <a href="{{ route('pets') }}" class="btn-cta-ghost">
+        <?php endif; ?>
+      <?php endif; ?>
+      <a href="<?php echo e(route('pets')); ?>" class="btn-cta-ghost">
         <i class="fas fa-search"></i> Browse More Pets
       </a>
     </div>
@@ -1190,4 +1192,6 @@
   reveals.forEach(el => observer.observe(el));
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.layoutPets', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\pro\composer\petSellingSystem\resources\views/pages/petsShow.blade.php ENDPATH**/ ?>

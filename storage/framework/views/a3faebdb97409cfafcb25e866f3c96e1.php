@@ -1,9 +1,9 @@
-{{-- resources/views/dashboard/seller/profile.blade.php --}}
-@extends('layouts.layoutDashboard')
 
-@section('title', 'Profile - Dashboard')
 
-@section('content')
+
+<?php $__env->startSection('title', 'Profile - Dashboard'); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="container mt-5">
     <h1 class="text-center mb-4">Mon Profil</h1>
 
@@ -12,26 +12,26 @@
             <div class="card shadow-sm p-4">
                 <h5 class="mb-3">Informations personnelles</h5>
                 <div class="mb-4 p-3 bg-light rounded">
-                    <p><strong>Nom :</strong> {{ auth()->user()->name }}</p>
-                    <p><strong>Email :</strong> {{ auth()->user()->email }}</p>
-                    <p><strong>Rôle :</strong> {{ ucfirst(auth()->user()->role) }}</p>
-                    <p><strong>Date d'inscription :</strong> {{ auth()->user()->created_at->format('d/m/Y') }}</p>
+                    <p><strong>Nom :</strong> <?php echo e(auth()->user()->name); ?></p>
+                    <p><strong>Email :</strong> <?php echo e(auth()->user()->email); ?></p>
+                    <p><strong>Rôle :</strong> <?php echo e(ucfirst(auth()->user()->role)); ?></p>
+                    <p><strong>Date d'inscription :</strong> <?php echo e(auth()->user()->created_at->format('d/m/Y')); ?></p>
                 </div>
 
                 <hr>
 
                 <h5 class="mb-3">Modifier mes informations</h5>
-                <form action="{{ route('dashboard.seller.profile.update') }}" method="POST" class="p-3 bg-white rounded shadow-sm">
-                    @csrf
-                    @method('PUT')
+                <form action="<?php echo e(route('dashboard.seller.profile.update')); ?>" method="POST" class="p-3 bg-white rounded shadow-sm">
+                    <?php echo csrf_field(); ?>
+                    <?php echo method_field('PUT'); ?>
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="name" name="name" value="{{ auth()->user()->name }}" placeholder="Nom" required>
+                        <input type="text" class="form-control" id="name" name="name" value="<?php echo e(auth()->user()->name); ?>" placeholder="Nom" required>
                         <label for="name">Nom</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" placeholder="Email" required>
+                        <input type="email" class="form-control" id="email" name="email" value="<?php echo e(auth()->user()->email); ?>" placeholder="Email" required>
                         <label for="email">Email</label>
                     </div>
 
@@ -199,4 +199,5 @@ hr{
 }
 
 </style>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.layoutDashboard', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\pro\composer\petSellingSystem\resources\views/dashboard/seller/profile.blade.php ENDPATH**/ ?>

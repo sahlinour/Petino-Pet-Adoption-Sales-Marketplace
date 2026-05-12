@@ -1,8 +1,8 @@
-@extends('layouts.layoutPets')
 
-@section('title', 'Pets List')
 
-@section('content')
+<?php $__env->startSection('title', 'Pets List'); ?>
+
+<?php $__env->startSection('content'); ?>
 
 
 <section class="happy-section fade-in">
@@ -12,7 +12,7 @@
       <!-- Left: image -->
       <div class="happy__visual">
         <div class="happy__img-frame">
-          <img src="{{ asset('images/headshot-happy-smiling-dark-skinned-afro-american-woman-holds-nice-breed-dog-expresses-positive-emotions-has-dreamy-expression-going-have-walk-with-favorite-pet-people-animals-concept.jpg') }}" alt="Happy pets">
+          <img src="<?php echo e(asset('images/headshot-happy-smiling-dark-skinned-afro-american-woman-holds-nice-breed-dog-expresses-positive-emotions-has-dreamy-expression-going-have-walk-with-favorite-pet-people-animals-concept.jpg')); ?>" alt="Happy pets">
         </div>
         <div class="happy__pill hp-a">🐶 2.4K+ Pets Adopted</div>
         <div class="happy__pill hp-b">⭐ 98% Happy Owners</div>
@@ -45,36 +45,37 @@
 
 <!-- ================= FILTERS ================= -->
 <section class="pets-filters container">
-    <form method="GET" action="{{ route('pets') }}" class="filters-form grid-filters">
+    <form method="GET" action="<?php echo e(route('pets')); ?>" class="filters-form grid-filters">
         <!-- Category Filter -->
         <div class="filter-group">
             <i class="fas fa-paw"></i>
             <select name="category" id="category">
                 <option value="">All Categories</option>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
-                        {{ ucfirst($category->name) }}
+                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($category->id); ?>" <?php echo e(request('category') == $category->id ? 'selected' : ''); ?>>
+                        <?php echo e(ucfirst($category->name)); ?>
+
                     </option>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
         </div>
 
         <!-- Breed Filter -->
         <div class="filter-group">
             <i class="fas fa-search"></i>
-            <input type="text" name="breed" id="breed" value="{{ request('breed') }}" placeholder="Breed">
+            <input type="text" name="breed" id="breed" value="<?php echo e(request('breed')); ?>" placeholder="Breed">
         </div>
 
         <!-- Max Price Filter -->
         <div class="filter-group">
             <i class="fas fa-dollar-sign"></i>
-            <input type="number" name="price" id="price" value="{{ request('price') }}" placeholder="Max Price">
+            <input type="number" name="price" id="price" value="<?php echo e(request('price')); ?>" placeholder="Max Price">
         </div>
 
         <!-- Max Age Filter -->
         <div class="filter-group">
             <i class="fas fa-calendar-alt"></i>
-            <input type="number" name="age" id="age" value="{{ request('age') }}" placeholder="Max Age">
+            <input type="number" name="age" id="age" value="<?php echo e(request('age')); ?>" placeholder="Max Age">
         </div>
 
         <!-- Submit Button -->
@@ -91,34 +92,36 @@
     
     <div class="pets-grid">
 
-        @forelse($listings as $listing)
+        <?php $__empty_1 = true; $__currentLoopData = $listings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $listing): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 
         <div class="pet-card">
 
             <div class="pet-card__image">
 
-                <img src="{{ asset('storage/' . $listing->pet->image) }}"
-                     alt="{{ $listing->pet->name }}">
+                <img src="<?php echo e(asset('storage/' . $listing->pet->image)); ?>"
+                     alt="<?php echo e($listing->pet->name); ?>">
 
-                <span class="pet-type {{ strtolower($listing->status) }}">
-                    {{ ucfirst($listing->status) }}
+                <span class="pet-type <?php echo e(strtolower($listing->status)); ?>">
+                    <?php echo e(ucfirst($listing->status)); ?>
+
                 </span>
 
             </div>
 
             <div class="pet-card__content">
 
-                <h3>{{ $listing->title }}</h3>
+                <h3><?php echo e($listing->title); ?></h3>
 
                 <p>
-                    {{ Str::limit($listing->description, 80) }}
+                    <?php echo e(Str::limit($listing->description, 80)); ?>
+
                 </p>
 
                 <span class="price">
-                    {{ $listing->price }} MAD
+                    <?php echo e($listing->price); ?> MAD
                 </span>
 
-                <a href="{{ route('pets.petsShow', $listing->pet->id) }}"
+                <a href="<?php echo e(route('pets.petsShow', $listing->pet->id)); ?>"
                    class="btn-details">
 
                     View Details
@@ -129,69 +132,70 @@
 
         </div>
 
-        @empty
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
 
             <p>No listings found.</p>
 
-        @endforelse
+        <?php endif; ?>
 
     </div>
 
     <!-- Pagination -->
-    @if ($listings->lastPage() > 1)
+    <?php if($listings->lastPage() > 1): ?>
 
     <nav class="custom-pagination">
 
         <ul>
 
-            {{-- Previous Page Link --}}
-            @if ($listings->onFirstPage())
+            
+            <?php if($listings->onFirstPage()): ?>
 
                 <li class="disabled">&laquo;</li>
 
-            @else
+            <?php else: ?>
 
                 <li>
-                    <a href="{{ $listings->previousPageUrl() }}">
+                    <a href="<?php echo e($listings->previousPageUrl()); ?>">
                         &laquo;
                     </a>
                 </li>
 
-            @endif
+            <?php endif; ?>
 
-            {{-- Page Numbers --}}
-            @for ($i = 1; $i <= $listings->lastPage(); $i++)
+            
+            <?php for($i = 1; $i <= $listings->lastPage(); $i++): ?>
 
-                <li class="{{ $listings->currentPage() == $i ? 'active' : '' }}">
+                <li class="<?php echo e($listings->currentPage() == $i ? 'active' : ''); ?>">
 
-                    <a href="{{ $listings->url($i) }}">
-                        {{ $i }}
+                    <a href="<?php echo e($listings->url($i)); ?>">
+                        <?php echo e($i); ?>
+
                     </a>
 
                 </li>
 
-            @endfor
+            <?php endfor; ?>
 
-            {{-- Next Page Link --}}
-            @if ($listings->hasMorePages())
+            
+            <?php if($listings->hasMorePages()): ?>
 
                 <li>
-                    <a href="{{ $listings->nextPageUrl() }}">
+                    <a href="<?php echo e($listings->nextPageUrl()); ?>">
                         &raquo;
                     </a>
                 </li>
 
-            @else
+            <?php else: ?>
 
                 <li class="disabled">&raquo;</li>
 
-            @endif
+            <?php endif; ?>
 
         </ul>
 
     </nav>
 
-    @endif
+    <?php endif; ?>
 
 </section>
 
@@ -215,4 +219,6 @@
 </section>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.layoutPets', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\pro\composer\petSellingSystem\resources\views/pages/petsList.blade.php ENDPATH**/ ?>

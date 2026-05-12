@@ -14,14 +14,18 @@ return new class extends Migration
         Schema::create('listings', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('pet_id')->constrained()->onDelete('cascade');
-            $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
+            // Relation avec la table pets
+            $table->foreignId('pet_id')
+                  ->constrained()
+                  ->onDelete('cascade');
 
+            // Champs principaux
             $table->string('title');
+            $table->text('description')->nullable();
+
             $table->decimal('price', 10, 2)->nullable();
 
-            $table->enum('type', ['sale', 'adoption'])->default('sale');
-
+            // Statut de l'annonce
             $table->enum('status', [
                 'active',
                 'pending',
@@ -29,11 +33,14 @@ return new class extends Migration
                 'expired'
             ])->default('active');
 
+            // Localisation
             $table->string('location')->nullable();
 
+            // Dates
             $table->timestamp('published_at')->nullable();
             $table->timestamp('expires_at')->nullable();
 
+            // Timestamps Laravel
             $table->timestamps();
         });
     }

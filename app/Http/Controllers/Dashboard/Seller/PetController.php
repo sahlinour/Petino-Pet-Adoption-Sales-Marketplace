@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard\Seller;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pet;
 use App\Models\Category;
@@ -67,35 +68,15 @@ class PetController extends Controller
      */
     public function show($id)
     {
-        // Récupérer l'animal par son ID
+        
         $pet = Pet::findOrFail($id);
 
-        // Vérifier si l'animal est déjà vendu
         $isSold = $pet->status === 'sold';
 
         return view('pages.petsShow', compact('pet', 'isSold'));
     }
 
-    // Méthode pour acheter un animal
-    public function buy($id)
-    {
-        // Récupérer l'animal par son ID
-        $pet = Pet::findOrFail($id);
-
-        // Vérifier si l'animal est déjà vendu
-        if ($pet->status === 'sold') {
-            return redirect()->route('pets')->with('error', 'This pet has already been sold.');
-        }
-
-        // Mettre à jour le statut de l'animal à "sold"
-        $pet->status = 'sold';
-        $pet->save();
-
-    
-        // Rediriger avec un message de succès
-        return redirect()->route('pets')->with('success', 'Thank you for your purchase!');
-    }
-
+ 
     /**
      * Show the form for editing the specified resource.
      */

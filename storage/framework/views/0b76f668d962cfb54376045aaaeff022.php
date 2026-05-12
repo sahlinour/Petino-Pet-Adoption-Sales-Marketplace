@@ -1,6 +1,6 @@
-@extends('layouts.layoutDashboard')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 <style>
 
@@ -438,9 +438,9 @@
         <div class="right-side">
 
             <form method="POST"
-                action="{{ route('seller.listings.store') }}">
+                action="<?php echo e(route('seller.listings.store')); ?>">
 
-                @csrf
+                <?php echo csrf_field(); ?>
 
                 <div class="form-grid">
 
@@ -453,31 +453,47 @@
                         </label>
 
                         <select name="pet_id"
-                            class="form-control @error('pet_id') is-invalid @enderror"
+                            class="form-control <?php $__errorArgs = ['pet_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                             required>
 
                             <option value="">
                                 Choose Pet
                             </option>
 
-                            @foreach($pets as $pet)
+                            <?php $__currentLoopData = $pets; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                                <option value="{{ $pet->id }}"
-                                    {{ old('pet_id') == $pet->id ? 'selected' : '' }}>
+                                <option value="<?php echo e($pet->id); ?>"
+                                    <?php echo e(old('pet_id') == $pet->id ? 'selected' : ''); ?>>
 
-                                    {{ $pet->name }}
+                                    <?php echo e($pet->name); ?>
+
 
                                 </option>
 
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                         </select>
 
-                        @error('pet_id')
+                        <?php $__errorArgs = ['pet_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                             <span class="error-msg">
-                                {{ $message }}
+                                <?php echo e($message); ?>
+
                             </span>
-                        @enderror
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                     </div>
 
@@ -492,17 +508,32 @@
                         <input
                             type="text"
                             name="title"
-                            class="form-control @error('title') is-invalid @enderror"
+                            class="form-control <?php $__errorArgs = ['title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                             placeholder="Listing title"
-                            value="{{ old('title') }}"
+                            value="<?php echo e(old('title')); ?>"
                             required
                         >
 
-                        @error('title')
+                        <?php $__errorArgs = ['title'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                             <span class="error-msg">
-                                {{ $message }}
+                                <?php echo e($message); ?>
+
                             </span>
-                        @enderror
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                     </div>
 
@@ -517,15 +548,30 @@
                         <textarea
                             name="description"
                             rows="5"
-                            class="form-control @error('description') is-invalid @enderror"
+                            class="form-control <?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                             placeholder="Description"
-                        >{{ old('description') }}</textarea>
+                        ><?php echo e(old('description')); ?></textarea>
 
-                        @error('description')
+                        <?php $__errorArgs = ['description'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                             <span class="error-msg">
-                                {{ $message }}
+                                <?php echo e($message); ?>
+
                             </span>
-                        @enderror
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                     </div>
 
@@ -540,16 +586,31 @@
                         <input
                             type="number"
                             name="price"
-                            class="form-control @error('price') is-invalid @enderror"
+                            class="form-control <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                             placeholder="Price"
-                            value="{{ old('price') }}"
+                            value="<?php echo e(old('price')); ?>"
                         >
 
-                        @error('price')
+                        <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                             <span class="error-msg">
-                                {{ $message }}
+                                <?php echo e($message); ?>
+
                             </span>
-                        @enderror
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                     </div>
 
@@ -563,7 +624,14 @@
 
                         <select
                             name="status"
-                            class="form-control @error('status') is-invalid @enderror">
+                            class="form-control <?php $__errorArgs = ['status'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
 
                             <option value="active">Active</option>
                             <option value="pending">Pending</option>
@@ -572,11 +640,19 @@
 
                         </select>
 
-                        @error('status')
+                        <?php $__errorArgs = ['status'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                             <span class="error-msg">
-                                {{ $message }}
+                                <?php echo e($message); ?>
+
                             </span>
-                        @enderror
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                     </div>
 
@@ -591,16 +667,31 @@
                         <input
                             type="text"
                             name="location"
-                            class="form-control @error('location') is-invalid @enderror"
+                            class="form-control <?php $__errorArgs = ['location'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
                             placeholder="Location"
-                            value="{{ old('location') }}"
+                            value="<?php echo e(old('location')); ?>"
                         >
 
-                        @error('location')
+                        <?php $__errorArgs = ['location'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
                             <span class="error-msg">
-                                {{ $message }}
+                                <?php echo e($message); ?>
+
                             </span>
-                        @enderror
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
 
                     </div>
 
@@ -628,4 +719,5 @@
 
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.layoutDashboard', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\pro\composer\petSellingSystem\resources\views/dashboard/seller/add-annonce.blade.php ENDPATH**/ ?>

@@ -1,4 +1,4 @@
-{{-- resources/views/dashboard/seller/profile.blade.php --}}
+{{-- resources/views/dashboard/buyer/profile.blade.php --}}
 @extends('layouts.layoutDashboard')
 
 @section('title', 'Profile - Dashboard')
@@ -21,7 +21,7 @@
                 <hr>
 
                 <h5 class="mb-3">Modifier mes informations</h5>
-                <form action="{{ route('dashboard.seller.profile.update') }}" method="POST" class="p-3 bg-white rounded shadow-sm">
+                <form action="{{ route('profile.update') }}" method="POST" class="p-3 bg-white rounded shadow-sm">
                     @csrf
                     @method('PUT')
 

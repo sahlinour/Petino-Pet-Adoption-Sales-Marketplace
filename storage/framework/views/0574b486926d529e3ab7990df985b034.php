@@ -1,6 +1,6 @@
-@extends('layouts.layoutDashboard')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 <style>
 
@@ -358,14 +358,14 @@
 
         <div class="purchase-count">
             <i class="fas fa-shopping-cart me-2"></i>
-            {{ $recentOrders->count() }} Achat(s)
+            <?php echo e($recentOrders->count()); ?> Achat(s)
         </div>
 
     </div>
 
     <!-- ================= TABLE ================= -->
 
-    @if($recentOrders->count() > 0)
+    <?php if($recentOrders->count() > 0): ?>
 
         <div class="table-card">
 
@@ -387,12 +387,12 @@
 
                     <tbody>
 
-                        @foreach($recentOrders as $order)
+                        <?php $__currentLoopData = $recentOrders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                             <tr>
 
                                 <td>
-                                    <strong>#{{ $order->id }}</strong>
+                                    <strong>#<?php echo e($order->id); ?></strong>
                                 </td>
 
                                 <td>
@@ -406,7 +406,8 @@
                                         <div>
 
                                             <div class="pet-name">
-                                                {{ $order->pet->name }}
+                                                <?php echo e($order->pet->name); ?>
+
                                             </div>
 
                                             <small class="text-muted">
@@ -422,47 +423,48 @@
                                 <td>
 
                                     <span class="price">
-                                        {{ number_format($order->total_price, 2) }} MAD
+                                        <?php echo e(number_format($order->total_price, 2)); ?> MAD
                                     </span>
 
                                 </td>
 
                                 <td>
 
-                                    {{ $order->created_at->format('d/m/Y') }}
+                                    <?php echo e($order->created_at->format('d/m/Y')); ?>
+
 
                                 </td>
 
                                 <td>
 
-                                    @if($order->status == 'pending')
+                                    <?php if($order->status == 'pending'): ?>
 
                                         <span class="status-badge status-pending">
                                             <i class="fas fa-clock"></i>
                                             En attente
                                         </span>
 
-                                    @elseif($order->status == 'completed')
+                                    <?php elseif($order->status == 'completed'): ?>
 
                                         <span class="status-badge status-completed">
                                             <i class="fas fa-check-circle"></i>
                                             Terminé
                                         </span>
 
-                                    @else
+                                    <?php else: ?>
 
                                         <span class="status-badge status-cancelled">
                                             <i class="fas fa-times-circle"></i>
                                             Annulé
                                         </span>
 
-                                    @endif
+                                    <?php endif; ?>
 
                                 </td>
 
                             </tr>
 
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </tbody>
 
@@ -472,7 +474,7 @@
 
         </div>
 
-    @else
+    <?php else: ?>
 
         <!-- ================= EMPTY STATE ================= -->
 
@@ -499,8 +501,9 @@
 
         </div>
 
-    @endif
+    <?php endif; ?>
 
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.layoutDashboard', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\pro\composer\petSellingSystem\resources\views/dashboard/buyer/dernieres-achats.blade.php ENDPATH**/ ?>

@@ -13,8 +13,8 @@ class Listing extends Model
     use HasFactory;
     protected $fillable = [
         'pet_id',
-        'seller_id',
         'title',
+        'description',
         'price',
         'type',
         'status',

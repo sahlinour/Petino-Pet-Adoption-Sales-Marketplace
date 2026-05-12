@@ -1,10 +1,10 @@
-@extends('layouts.layoutDashboard')
 
-@section('content')
 
-@php
+<?php $__env->startSection('content'); ?>
+
+<?php
     use Illuminate\Support\Str;
-@endphp
+?>
 
 <style>
 
@@ -454,7 +454,7 @@
 
         </div>
 
-        <a href="{{ route('seller.listings.create') }}"
+        <a href="<?php echo e(route('seller.listings.create')); ?>"
            class="add-btn">
 
             <i class="fas fa-plus-circle"></i>
@@ -480,7 +480,8 @@
             </div>
 
             <div class="stat-number">
-                {{ $listings->count() }}
+                <?php echo e($listings->count()); ?>
+
             </div>
 
         </div>
@@ -496,7 +497,8 @@
             </div>
 
             <div class="stat-number">
-                {{ $listings->where('status','active')->count() }}
+                <?php echo e($listings->where('status','active')->count()); ?>
+
             </div>
 
         </div>
@@ -512,7 +514,8 @@
             </div>
 
             <div class="stat-number">
-                {{ $listings->where('status','sold')->count() }}
+                <?php echo e($listings->where('status','sold')->count()); ?>
+
             </div>
 
         </div>
@@ -523,37 +526,37 @@
 
     <div class="annonces-grid">
 
-        @forelse($listings as $listing)
+        <?php $__empty_1 = true; $__currentLoopData = $listings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $listing): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
 
             <div class="annonce-card">
 
                 <!-- STATUS -->
 
-                @if($listing->status == 'active')
+                <?php if($listing->status == 'active'): ?>
 
                     <span class="status status-active">
                         Active
                     </span>
 
-                @elseif($listing->status == 'pending')
+                <?php elseif($listing->status == 'pending'): ?>
 
                     <span class="status status-pending">
                         Pending
                     </span>
 
-                @elseif($listing->status == 'sold')
+                <?php elseif($listing->status == 'sold'): ?>
 
                     <span class="status status-sold">
                         Sold
                     </span>
 
-                @else
+                <?php else: ?>
 
                     <span class="status status-sold">
                         Expired
                     </span>
 
-                @endif
+                <?php endif; ?>
 
                 <!-- IMAGE -->
 
@@ -569,19 +572,21 @@
 
                     <h3 class="annonce-name">
 
-                        {{ $listing->title }}
+                        <?php echo e($listing->title); ?>
+
 
                     </h3>
 
                     <div class="annonce-price">
 
-                        {{ number_format($listing->price,2) }} MAD
+                        <?php echo e(number_format($listing->price,2)); ?> MAD
 
                     </div>
 
                     <p class="annonce-description">
 
-                        {{ Str::limit($listing->description, 100) }}
+                        <?php echo e(Str::limit($listing->description, 100)); ?>
+
 
                     </p>
 
@@ -600,8 +605,8 @@
                               method="POST"
                               style="flex:1;">
 
-                            @csrf
-                            @method('DELETE')
+                            <?php echo csrf_field(); ?>
+                            <?php echo method_field('DELETE'); ?>
 
                             <button type="submit"
                                     class="action-btn delete-btn border-0 w-100">
@@ -618,7 +623,7 @@
 
             </div>
 
-        @empty
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
 
             <!-- EMPTY -->
 
@@ -636,10 +641,11 @@
 
             </div>
 
-        @endforelse
+        <?php endif; ?>
 
     </div>
 
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.layoutDashboard', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\pro\composer\petSellingSystem\resources\views/dashboard/seller/annonces.blade.php ENDPATH**/ ?>

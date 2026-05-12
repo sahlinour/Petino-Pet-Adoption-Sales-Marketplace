@@ -14,9 +14,9 @@ class DashboardController extends Controller
      */
     public function index() {
         if(auth()->user()->role === 'seller'){
-            return redirect()->route('dashboard.seller.annonces');
+            return redirect()->route('seller.dashboard');
         } else {
-            return redirect()->route('dashboard.buyer.historique');
+            return redirect()->route('buyer.dashboard');
         }
     }
 
@@ -66,6 +66,12 @@ class DashboardController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function buyerDashboard() {
+        return view('dashboard.buyer.dashboardBuyer');
+    }
+    public function sellerDashboard() {
+        return view('dashboard.seller.dashboardSeller');
     }
 
     public function buyerHistorique() {

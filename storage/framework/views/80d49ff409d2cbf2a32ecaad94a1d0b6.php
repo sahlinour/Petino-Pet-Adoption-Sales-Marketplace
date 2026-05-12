@@ -1,10 +1,10 @@
-{{-- resources/views/layouts/app.blade.php --}}
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Dashboard')</title>
+    <title><?php echo $__env->yieldContent('title', 'Dashboard'); ?></title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -751,44 +751,44 @@
 </head>
 <body>
 
-    {{-- Top Navbar --}}
+    
     <nav class="top-navbar">
         <span class="navbar-brand">Pet Management Dashboard</span>
         <button class="btn btn-light" id="toggleSidebar"><i class="fas fa-bars"></i></button>
     </nav>
 
-    {{-- Sidebar --}}
+    
     <div class="sidebar">
-        @if(auth()->user()->role == 'seller')
-            <a href="{{ route('seller.dashboard') }}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
-            <a href="{{ route('seller.listings') }}"><i class="fas fa-paw"></i><span>Mes Annonces</span></a>
-            <a href="{{ route('seller.listings.create') }}"><i class="fas fa-plus-circle"></i><span>Ajouter une Annonce</span></a>
-            <a href="{{ route('seller.historique') }}"><i class="fas fa-history"></i><span>Historique</span></a>
-            <a href="{{ route('seller.messages') }}"><i class="fas fa-envelope"></i><span>Messages</span></a>
-            <a href="{{ route('profile') }}"><i class="fas fa-user"></i><span>Profile</span></a>
+        <?php if(auth()->user()->role == 'seller'): ?>
+            <a href="<?php echo e(route('seller.dashboard')); ?>"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+            <a href="<?php echo e(route('seller.listings')); ?>"><i class="fas fa-paw"></i><span>Mes Annonces</span></a>
+            <a href="<?php echo e(route('seller.listings.create')); ?>"><i class="fas fa-plus-circle"></i><span>Ajouter une Annonce</span></a>
+            <a href="<?php echo e(route('seller.historique')); ?>"><i class="fas fa-history"></i><span>Historique</span></a>
+            <a href="<?php echo e(route('seller.messages')); ?>"><i class="fas fa-envelope"></i><span>Messages</span></a>
+            <a href="<?php echo e(route('profile')); ?>"><i class="fas fa-user"></i><span>Profile</span></a>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i><span>Logout</span>
             </a>
-        @elseif(auth()->user()->role == 'buyer')
-            <a href="{{ route('buyer.dashboard') }}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
-            <a href="{{ route('buyer.favorites') }}"><i class="fas fa-heart"></i><span>Favorites</span></a>
-            <a href="{{ route('buyer.dernieres-achats') }}"><i class="fas fa-shopping-cart"></i><span>Derniers Achats</span></a>
-            <a href="{{ route('profile.update') }}"><i class="fas fa-user"></i><span>Profile</span></a>
+        <?php elseif(auth()->user()->role == 'buyer'): ?>
+            <a href="<?php echo e(route('buyer.dashboard')); ?>"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+            <a href="<?php echo e(route('buyer.favorites')); ?>"><i class="fas fa-heart"></i><span>Favorites</span></a>
+            <a href="<?php echo e(route('buyer.dernieres-achats')); ?>"><i class="fas fa-shopping-cart"></i><span>Derniers Achats</span></a>
+            <a href="<?php echo e(route('profile.update')); ?>"><i class="fas fa-user"></i><span>Profile</span></a>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i><span>Logout</span>
             </a>
-        @endif
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
+        <?php endif; ?>
+        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+            <?php echo csrf_field(); ?>
         </form>
     </div>
 
-    {{-- Main Content --}}
+    
     <div class="main-content">
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
     </div>
 
-    {{-- Scripts --}}
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const toggleBtn = document.getElementById('toggleSidebar');
@@ -801,4 +801,4 @@
         });
     </script>  
 </body>
-</html>
+</html><?php /**PATH C:\Users\pro\composer\petSellingSystem\resources\views/layouts/layoutDashboard.blade.php ENDPATH**/ ?>
