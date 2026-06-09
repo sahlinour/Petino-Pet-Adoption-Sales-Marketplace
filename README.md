@@ -5,6 +5,7 @@
 [![Laravel](https://img.shields.io/badge/Laravel-1a1a2e?style=for-the-badge&logo=laravel&logoColor=FF2D20)](https://laravel.com)
 [![PHP](https://img.shields.io/badge/PHP-1a1a2e?style=for-the-badge&logo=php&logoColor=c9b8ff)](https://php.net)
 [![MySQL](https://img.shields.io/badge/MySQL-1a1a2e?style=for-the-badge&logo=mysql&logoColor=4479A1)](https://mysql.com)
+![CSS3](https://img.shields.io/badge/CSS3-1a1a2e?style=for-the-badge&logo=css3&logoColor=1572B6)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-1a1a2e?style=for-the-badge&logo=bootstrap&logoColor=7952B3)](https://getbootstrap.com)
 
 </div>
@@ -14,6 +15,22 @@
 ##  About
 
 **Petino** is a web marketplace for buying and selling pets online. Users can browse listings, post their own pets, filter by category or breed, and connect with buyers and sellers in a secure environment.
+
+---
+
+##  Preview
+
+<div align="center">
+
+![Home](https://raw.githubusercontent.com/sahlinour/petSellingSystem/petsBransh/screenshots/home.png)
+
+![Categories](https://raw.githubusercontent.com/sahlinour/petSellingSystem/petsBransh/screenshots/categories.png)
+
+![About](https://raw.githubusercontent.com/sahlinour/petSellingSystem/petsBransh/screenshots/about.png)
+
+![Happy Pets](https://raw.githubusercontent.com/sahlinour/petSellingSystem/petsBransh/screenshots/happyPets.png)
+
+</div>
 
 ---
 
@@ -35,6 +52,7 @@
 ![Laravel](https://img.shields.io/badge/Laravel-1a1a2e?style=for-the-badge&logo=laravel&logoColor=FF2D20)
 ![PHP](https://img.shields.io/badge/PHP-1a1a2e?style=for-the-badge&logo=php&logoColor=c9b8ff)
 ![MySQL](https://img.shields.io/badge/MySQL-1a1a2e?style=for-the-badge&logo=mysql&logoColor=4479A1)
+![CSS3](https://img.shields.io/badge/CSS3-1a1a2e?style=for-the-badge&logo=css3&logoColor=1572B6)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-1a1a2e?style=for-the-badge&logo=bootstrap&logoColor=7952B3)
 ![JavaScript](https://img.shields.io/badge/JavaScript-1a1a2e?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 ![Git](https://img.shields.io/badge/Git-1a1a2e?style=for-the-badge&logo=git&logoColor=F05032)
