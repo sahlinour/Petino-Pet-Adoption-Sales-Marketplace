@@ -1,29 +1,87 @@
-# 🐾 Pets System
+<div align="center">
 
-![Pets System](https://img.shields.io/badge/Pets-System-blueviolet) ![Laravel](https://img.shields.io/badge/Laravel-8-red) ![PHP](https://img.shields.io/badge/PHP-8.3-blue) ![MySQL](https://img.shields.io/badge/MySQL-5.7-green)
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=150&section=header&text=🐾%20Petino&fontSize=38&fontColor=fff&animation=fadeIn&fontAlignY=40&desc=Pet%20Selling%20Marketplace&descAlignY=62&descSize=16" width="100%"/>
 
-## 📖 Description
-**Pets System** is a **secure and user-friendly web platform** that allows users to **buy and sell pets online**.  
-The system provides an intuitive interface for **browsing, posting, and connecting pet owners and buyers**.  
+[![Laravel](https://img.shields.io/badge/Laravel-1a1a2e?style=for-the-badge&logo=laravel&logoColor=FF2D20)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-1a1a2e?style=for-the-badge&logo=php&logoColor=c9b8ff)](https://php.net)
+[![MySQL](https://img.shields.io/badge/MySQL-1a1a2e?style=for-the-badge&logo=mysql&logoColor=4479A1)](https://mysql.com)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-1a1a2e?style=for-the-badge&logo=bootstrap&logoColor=7952B3)](https://getbootstrap.com)
 
-It is designed to help pets find loving homes while providing an easy-to-use marketplace for pet enthusiasts.
-
----
-
-## ✨ Features
-
-- **User Authentication:** Sign up and log in securely.
-- **Pet Listings:** Add pets with detailed descriptions, photos, and pricing.
-- **Filtering:** Search pets by category, breed, age, or price.
-- **Responsive Design:** Works seamlessly on desktops, tablets, and mobile devices.
-- **Status Tracking:** Shows if a pet is available or sold.
-- **Contact & Connect:** Safely communicate with potential buyers or sellers.
+</div>
 
 ---
 
-## 🛠 Technologies Used
+##  About
 
-- **Frontend:** HTML5, CSS3, JavaScript, Bootstrap  
-- **Backend:** PHP, Laravel  
-- **Database:** MySQL  
-- **Tools:** Git, GitHub  
+**Petino** is a web marketplace for buying and selling pets online. Users can browse listings, post their own pets, filter by category or breed, and connect with buyers and sellers in a secure environment.
+
+---
+
+##  Features
+
+-  **Authentication** — Secure sign up and login
+-  **Pet Listings** — Add pets with photos, descriptions, and pricing
+-  **Filtering** — Search by category, breed, age, or price
+-  **Responsive Design** — Works on desktop, tablet, and mobile
+-  **Status Tracking** — Available or sold indicator
+-  **Contact** — Connect safely with buyers and sellers
+
+---
+
+##  Tech Stack
+
+<div align="center">
+
+![Laravel](https://img.shields.io/badge/Laravel-1a1a2e?style=for-the-badge&logo=laravel&logoColor=FF2D20)
+![PHP](https://img.shields.io/badge/PHP-1a1a2e?style=for-the-badge&logo=php&logoColor=c9b8ff)
+![MySQL](https://img.shields.io/badge/MySQL-1a1a2e?style=for-the-badge&logo=mysql&logoColor=4479A1)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-1a1a2e?style=for-the-badge&logo=bootstrap&logoColor=7952B3)
+![JavaScript](https://img.shields.io/badge/JavaScript-1a1a2e?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![Git](https://img.shields.io/badge/Git-1a1a2e?style=for-the-badge&logo=git&logoColor=F05032)
+
+</div>
+
+---
+
+##  Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/sahlinour/petSellingSystem.git
+
+# 2. Navigate to the project
+cd petSellingSystem
+
+# 3. Install dependencies
+composer install
+
+# 4. Copy environment file
+cp .env.example .env
+
+# 5. Generate app key
+php artisan key:generate
+
+# 6. Configure your database in .env
+DB_DATABASE=petshop
+DB_USERNAME=root
+DB_PASSWORD=
+
+# 7. Run migrations
+php artisan migrate
+
+# 8. Link storage
+php artisan storage:link
+
+# 9. Start the server
+php artisan serve
+```
+
+---
+
+<div align="center">
+
+Developped by [Nour El Houda Sahli](https://github.com/sahlinour)
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=100&section=footer" width="100%"/>
+
+</div>
